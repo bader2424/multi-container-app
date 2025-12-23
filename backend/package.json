@@ -10,7 +10,7 @@
   "scripts": {
   "start": "node index.js",
   "dev": "nodemon index.js",
-  "test": "jest"
+  "test": "npx jest --detectOpenHandles"
 },
   "devDependencies": {
     "jest": "^30.2.0",
