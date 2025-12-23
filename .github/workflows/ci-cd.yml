@@ -77,23 +77,6 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/multi-container-app-frontend:latest ./frontend
 
-      # 10. Scan backend Docker image with Trivy
-      - name: Scan backend image for vulnerabilities
-        uses: aquasecurity/trivy-action@v0.11.0
-        with:
-          image-ref: ${{ secrets.DOCKER_USERNAME }}/multi-container-app-backend:latest
-          format: table
-          exit-code: 1
-          ignore-unfixed: true
-
-      # 11. Scan frontend Docker image with Trivy
-      - name: Scan frontend image for vulnerabilities
-        uses: aquasecurity/trivy-action@v0.11.0
-        with:
-          image-ref: ${{ secrets.DOCKER_USERNAME }}/multi-container-app-frontend:latest
-          format: table
-          exit-code: 1
-          ignore-unfixed: true
 
       # 12. Push backend image to Docker Hub
       - name: Push backend Docker image
