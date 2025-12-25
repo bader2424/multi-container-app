@@ -8,11 +8,12 @@
     "mongoose": "^8.20.4"
   },
   "scripts": {
-  "start": "node index.js",
-  "dev": "nodemon index.js",
-  "test": "NODE_ENV=test npx jest --detectOpenHandles --forceExit"
-},
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "cross-env NODE_ENV=test npx jest --detectOpenHandles --forceExit"
+  },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "jest": "^30.2.0",
     "nodemon": "^3.1.11",
     "supertest": "^7.1.4"
