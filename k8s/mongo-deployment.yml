@@ -18,9 +18,19 @@ spec:
           ports:
             - containerPort: 27017
           env:
-            - name: MONGO_URI
-              value: mongodb://mongo:27017/mydb
             - name: MONGO_INITDB_ROOT_USERNAME
-              value: admin
+              value: "admin"
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: admin
+              value: "admin"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017

@@ -14,9 +14,21 @@ spec:
     spec:
       containers:
         - name: backend
-          image: bader1937/multi-container-app-backend:PLACEHOLDER
+          image: <DOCKER_USERNAME>/backend:latest
           ports:
             - containerPort: 5000
           env:
             - name: MONGO_URI
-              value: mongodb://admin:admin@mongo:27017
+              value: "mongodb://mongo:27017/mydb"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
