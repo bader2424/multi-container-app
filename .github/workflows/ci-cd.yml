@@ -44,14 +44,4 @@ jobs:
         docker build -t $FRONTEND_IMAGE:${{ github.sha }} ./frontend
         docker push $FRONTEND_IMAGE:${{ github.sha }}
 
-    - name: Configure kubectl
-      run: |
-        echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > kubeconfig
-        export KUBECONFIG=$PWD/kubeconfig
-        kubectl get nodes
-
-    - name: Deploy to Kubernetes
-      run: |
-        export KUBECONFIG=$PWD/kubeconfig
-        kubectl set image deployment/backend backend=$BACKEND_IMAGE:${{ github.sha }}
-        kubectl set image deployment/frontend frontend=$FRONTEND_IMAGE:${{ github.sha }}
+   
